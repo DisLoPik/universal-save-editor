@@ -1,0 +1,17 @@
+# This Cloudflare project was provisioned as a Worker with static assets
+# (Cloudflare's newer unified model — confirmed from the dashboard: it shows
+# Bindings/Queues/Observability, the Workers-project UI, not the classic
+# Pages UI), not a classic "Pages" project. That's a plain `wrangler deploy`
+# reading this file, not `wrangler pages deploy`.
+#
+# This app has zero server-side Worker code — it's 100% static — so no
+# `main` entry point is declared, only a static assets directory.
+name = "universal-save-editor"
+compatibility_date = "2024-09-23"
+
+[assets]
+directory = "./dist"
+# Client-side routes (e.g. /supported-games, /docs, /about) have no matching
+# file on disk — this tells the assets handler to fall back to index.html
+# and let react-router handle them, instead of 404ing.
+not_found_handling = "single-page-application"

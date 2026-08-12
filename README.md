@@ -11,8 +11,8 @@ Schema Definition → Save Editor UI → Modified Binary → Download
 ```
 
 Everything runs client-side. A save file is never uploaded anywhere, to this app's own infrastructure or to any
-third party — the whole thing is a static site and can be hosted as one (see [Deploying to Cloudflare
-Pages](#deploying-to-cloudflare-pages) below).
+third party — the whole thing is a static site and can be hosted as one (see [Deploying to
+Cloudflare](#deploying-to-cloudflare) below).
 
 ## Quick start
 
@@ -110,34 +110,55 @@ rather than a default; Wii U saves are genuinely console-bound and impractical t
 - Save files are read with the browser File API and processed in memory (optionally on a Web Worker); nothing is
   uploaded without explicit user action (there is no upload path for save data at all, only downloads).
 
-## Deploying to Cloudflare Pages
+## Deploying to Cloudflare
 
-This is a 100% static site — no Workers/Functions runtime is used, so there's deliberately **no `wrangler.toml`** in
-this repo. Its presence used to cause a real problem: Cloudflare's Git-connected build pipeline treats any
-`wrangler.toml` at the repo root as a signal to run `npx wrangler deploy` (the Workers deploy command) as a post-build
-step, which fails outright against a plain static build — the fix was removing the file, not fixing its config.
+This is a 100% static site — no server-side Worker code, just prebuilt HTML/JS/CSS/JSON. **Which exact setup steps
+apply depends on which Cloudflare project type you end up with**, which varies by account: Cloudflare has been
+merging "Pages" and "Workers" into one product, and depending on your account, going through **Workers & Pages →
+Create → Pages → Connect to Git** can actually provision either a classic Pages project or a Worker with a static
+assets binding. Check which one you got before following the steps below — open the project in the dashboard: if
+the tabs are *Overview / Metrics / Deployments / **Bindings** / Observability / Domains / Settings* and it shows
+"Bindings", "Queues", it's a **Worker**; if there's no Bindings tab and it instead shows a "Custom domains" tab
+alongside a plain "Deployments" list, it's classic **Pages**.
 
-**Dashboard (Git integration) — recommended:**
+### If it's a Worker (with static assets) — has a "Bindings" tab
 
-1. Push this repo to GitHub and connect it in the Cloudflare dashboard: **Workers & Pages → Create → Pages → Connect
-   to Git**.
-2. Framework preset: `Vite` (should auto-detect).
-3. Build command: `npm run build`
-4. Build output directory: `dist`
-5. **Deploy command: leave it blank.** If you're editing an existing project that already has `npx wrangler deploy`
-   saved under **Settings → Builds & deployments → Deploy command** (left over from before `wrangler.toml` was
-   removed), clear that field — a plain Pages project doesn't need one; Pages uploads the build output directory
-   directly.
-6. Save and deploy. No environment variables are needed.
+This repo's `wrangler.toml` is already configured for this case (a `name`, `compatibility_date`, and an `[assets]`
+block pointing at `./dist`, with SPA fallback so client-side routes like `/docs` don't 404).
 
-**CLI (`wrangler`):**
+1. In the project → **Settings → Builds & deployments**:
+   - Build command: `npm run build`
+   - Deploy command: `npx wrangler deploy` (no flags needed — everything comes from `wrangler.toml`)
+2. Under **Settings → Builds & deployments → API Token**, you need a token with **Account → Cloudflare Pages → Edit**
+   permission at minimum (create one at https://dash.cloudflare.com/profile/api-tokens if the field shows
+   "unavailable") — an account role of Super Administrator does **not** substitute for this; the token itself needs
+   the permission explicitly checked when it's created, and API tokens can also be broken by a Client IP Address
+   Filter that doesn't include Cloudflare's build servers, so leave that filter empty.
+3. Save, retry the deployment.
+4. Once it deploys, the **Domains** tab will likely show "No URLs enabled" — enable a `*.workers.dev` URL there, or
+   skip straight to attaching your own domain (same tab), for the site to actually be reachable.
+
+CLI equivalent, run locally after `npm run build`:
+
+```bash
+npx wrangler deploy
+```
+
+### If it's classic Pages — has a "Custom domains" tab, no Bindings
+
+1. Build command: `npm run build`
+2. Build output directory: `dist`
+3. Deploy command: leave blank — classic Pages uploads the build output directory directly, no `wrangler` step
+   needed. If one is already saved from switching between project types, clear it.
+4. No `wrangler.toml` is needed for this path — its presence can actually cause Cloudflare's build pipeline to try
+   running a Worker-style deploy instead of the plain Pages upload, so keep it deleted if you're on this path.
+
+CLI equivalent:
 
 ```bash
 npm run build
-npx wrangler pages deploy dist --project-name=universal-save-editor
+npx wrangler pages deploy dist --project-name=<your-project-name>
 ```
-
-(`--project-name` replaces what `wrangler.toml`'s `pages_build_output_dir` used to provide — no config file needed.)
 
 ### Updating schemas without redeploying the app
 

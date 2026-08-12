@@ -6,5 +6,8 @@ dist-ssr/
 .DS_Store
 coverage/
 *.log
+screenshot*.png
+screenshot*.jpg
+screenshot*.jpeg
 .vscode/*
 !.vscode/extensions.json

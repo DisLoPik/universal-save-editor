@@ -110,6 +110,41 @@ rather than a default; Wii U saves are genuinely console-bound and impractical t
 - Save files are read with the browser File API and processed in memory (optionally on a Web Worker); nothing is
   uploaded without explicit user action (there is no upload path for save data at all, only downloads).
 
+## Deploying to Cloudflare Pages
+
+This is a 100% static site — no Workers/Functions runtime is used, so there's deliberately **no `wrangler.toml`** in
+this repo. Its presence used to cause a real problem: Cloudflare's Git-connected build pipeline treats any
+`wrangler.toml` at the repo root as a signal to run `npx wrangler deploy` (the Workers deploy command) as a post-build
+step, which fails outright against a plain static build — the fix was removing the file, not fixing its config.
+
+**Dashboard (Git integration) — recommended:**
+
+1. Push this repo to GitHub and connect it in the Cloudflare dashboard: **Workers & Pages → Create → Pages → Connect
+   to Git**.
+2. Framework preset: `Vite` (should auto-detect).
+3. Build command: `npm run build`
+4. Build output directory: `dist`
+5. **Deploy command: leave it blank.** If you're editing an existing project that already has `npx wrangler deploy`
+   saved under **Settings → Builds & deployments → Deploy command** (left over from before `wrangler.toml` was
+   removed), clear that field — a plain Pages project doesn't need one; Pages uploads the build output directory
+   directly.
+6. Save and deploy. No environment variables are needed.
+
+**CLI (`wrangler`):**
+
+```bash
+npm run build
+npx wrangler pages deploy dist --project-name=universal-save-editor
+```
+
+(`--project-name` replaces what `wrangler.toml`'s `pages_build_output_dir` used to provide — no config file needed.)
+
+### Updating schemas without redeploying the app
+
+By default the app fetches `schemas/index.json` from its own origin (`/schemas`), which *does* redeploy with the
+app. To let the community publish new schemas independently of app releases, point the schema base URL at an
+external location instead (Settings section on the About page, or `useSettingsStore`) — e.g. a CDN mirror of a
+separate schemas git repo — no app code change or redeploy required, just a config value.
 
 ## License
 

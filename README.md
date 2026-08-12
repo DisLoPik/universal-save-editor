@@ -124,7 +124,12 @@ alongside a plain "Deployments" list, it's classic **Pages**.
 ### If it's a Worker (with static assets) — has a "Bindings" tab
 
 This repo's `wrangler.toml` is already configured for this case (a `name`, `compatibility_date`, and an `[assets]`
-block pointing at `./dist`, with SPA fallback so client-side routes like `/docs` don't 404).
+block pointing at `./dist`, with `not_found_handling = "single-page-application"` so client-side routes like `/docs`
+fall back to `index.html` instead of 404ing). **There is deliberately no `public/_redirects` file** — Workers assets
+processes `_redirects` too, and a classic Pages-style `/* /index.html 200` catch-all rule actively conflicts with
+`not_found_handling`'s own URL normalization, which Cloudflare rejects at deploy time as an infinite-redirect-loop
+config error. If you ever add a `_redirects` file back for some other purpose, keep it to specific paths, not a
+blanket `/*` catch-all — `not_found_handling` already covers the SPA-fallback case entirely on its own.
 
 1. In the project → **Settings → Builds & deployments**:
    - Build command: `npm run build`
@@ -152,6 +157,9 @@ npx wrangler deploy
    needed. If one is already saved from switching between project types, clear it.
 4. No `wrangler.toml` is needed for this path — its presence can actually cause Cloudflare's build pipeline to try
    running a Worker-style deploy instead of the plain Pages upload, so keep it deleted if you're on this path.
+5. Classic Pages does **not** auto-fallback to `index.html` for client-side routes the way this repo's
+   `wrangler.toml` does for the Worker path — add a `public/_redirects` file containing `/* /index.html 200` if
+   you're on classic Pages and want `/docs`, `/supported-games`, etc. to work on a hard refresh or a shared link.
 
 CLI equivalent:
 

@@ -1,6 +1,0 @@
-# Cloudflare Pages SPA fallback: unknown paths (client-side routes like
-# /supported-games, /docs, /about) should serve index.html and let
-# react-router handle routing. Real static assets (schemas/*, favicon, etc.)
-# are matched first because Pages checks for an existing file before
-# applying this catch-all.
-/*    /index.html   200

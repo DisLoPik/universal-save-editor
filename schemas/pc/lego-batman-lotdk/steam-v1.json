@@ -1,0 +1,58 @@
+{
+  "id": "lego-batman-lotdk-pc-steam-v1",
+  "game": "LEGO Batman: Legacy of the Dark Knight",
+  "platform": "PC",
+  "region": "Global",
+  "version": "1.0",
+  "author": "Universal Save Editor (community research)",
+  "license": "MIT",
+  "description": "RC4 key and field-location logic verified directly against the source code of the open-source DisLoPik/Lego-Batman-LOTDK-Save-Editor project (SaveEditor.py) — HIGH confidence on the key and on the 'StudsCollected' field specifically. This schema deliberately covers ONLY that one field: the same reference tool also edits WayneTech Chip / Bat Token unlock flags, but those use variable-length enum-string swaps with container-size patching, a materially riskier operation (can shift every following byte) that this engine does not yet support and was not worth the corruption risk to approximate. Not tested against a real captured save file by this project. Save format is Unreal Engine's GVAS serialized-property format: the whole file is RC4-encrypted at rest, decrypting to a file starting with the literal bytes 'GVAS'. Save path: %LOCALAPPDATA%/Warner Bros. Interactive Entertainment/LEGO Batman Legacy of the Dark Knight/SaveGames/steam/<SteamID>/SaveSlot_0_TT.sav",
+  "lastUpdated": "2026-08-11",
+  "schemaVersion": 1,
+  "fingerprints": [
+    {
+      "id": "steam-v1",
+      "description": "The file has no recognizable plaintext header (it's encrypted at rest), so the only reliable fingerprint is: does RC4-decrypting with the known key reveal the GVAS magic?",
+      "rules": [
+        {
+          "type": "decryptedBytes",
+          "algorithm": "rc4",
+          "key": {
+            "type": "literal",
+            "value": "21 38 11 60 17 47 2f 53 5d 37 24 0e 0e 0f 60 43 2f 0e 3f 0a 27 55 4b 0b 4f 59 25 38 0b 3a 44 17"
+          },
+          "offset": "0x0",
+          "value": "47 56 41 53"
+        }
+      ]
+    }
+  ],
+  "encryption": [
+    {
+      "id": "main",
+      "algorithm": "rc4",
+      "range": { "start": "0x0", "end": "eof" },
+      "key": {
+        "type": "literal",
+        "value": "21 38 11 60 17 47 2f 53 5d 37 24 0e 0e 0f 60 43 2f 0e 3f 0a 27 55 4b 0b 4f 59 25 38 0b 3a 44 17"
+      }
+    }
+  ],
+  "groups": [{ "id": "progress", "name": "Progress", "order": 0 }],
+  "fields": [
+    {
+      "id": "studsCollected",
+      "name": "Studs Collected",
+      "type": "int64",
+      "searchPattern": "StudsCollected",
+      "searchValueType": "Int64Property",
+      "searchValueTypeMaxDistance": 46,
+      "searchValueDelta": 23,
+      "endianness": "little",
+      "min": 0,
+      "description": "Located by searching for the GVAS property name rather than a fixed offset (property position varies between saves) — matches the verified reference save editor's logic: find the property name 'StudsCollected' (stored null-terminated in the real file; the trailing null isn't required for this search to land on the same position), then 'Int64Property' within ~45 bytes after it, then the value is 8 bytes starting 23 bytes after the start of that second match.",
+      "group": "progress",
+      "order": 0
+    }
+  ]
+}

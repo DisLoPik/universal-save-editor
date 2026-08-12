@@ -1,0 +1,87 @@
+{
+  "id": "iron-keep-gbc-usa-v1",
+  "game": "Iron Keep",
+  "platform": "Game Boy Color",
+  "region": "USA",
+  "version": "1.0",
+  "author": "Universal Save Editor examples",
+  "license": "MIT",
+  "description": "Fictional example game demonstrating bitfields, packed boolean flags, enums, a struct, and a declarative transform. Not a real commercial game.",
+  "lastUpdated": "2026-08-11",
+  "schemaVersion": 1,
+  "fingerprints": [
+    {
+      "id": "usa-v1",
+      "description": "Magic bytes + format version byte + exact file size",
+      "rules": [
+        { "type": "fileSize", "value": 64 },
+        { "type": "bytes", "offset": "0x0", "value": "49 52 4E 4B" },
+        { "type": "bytes", "offset": "0x4", "value": "01" }
+      ]
+    }
+  ],
+  "groups": [
+    { "id": "progress", "name": "Progress", "order": 0 },
+    { "id": "stats", "name": "Stats", "order": 1 }
+  ],
+  "fields": [
+    {
+      "id": "difficulty",
+      "name": "Difficulty",
+      "type": "enum",
+      "offset": "0x5",
+      "storageType": "uint8",
+      "values": { "0": "Normal", "1": "Hard", "2": "Expert" },
+      "group": "progress",
+      "order": 0
+    },
+    { "id": "hasMap", "name": "Has Map", "type": "boolean", "offset": "0x6", "bit": 0, "group": "progress", "order": 1 },
+    { "id": "hasSword", "name": "Has Sword", "type": "boolean", "offset": "0x6", "bit": 1, "group": "progress", "order": 2 },
+    { "id": "hasShield", "name": "Has Shield", "type": "boolean", "offset": "0x6", "bit": 2, "group": "progress", "order": 3 },
+    { "id": "hasBoat", "name": "Has Boat", "type": "boolean", "offset": "0x6", "bit": 3, "group": "progress", "order": 4 },
+    {
+      "id": "currentChapter",
+      "name": "Current Chapter",
+      "type": "bitfield",
+      "offset": "0x7",
+      "bitOffset": 0,
+      "bitLength": 3,
+      "min": 0,
+      "max": 7,
+      "group": "progress",
+      "order": 5
+    },
+    {
+      "id": "bossDefeated",
+      "name": "Boss Defeated",
+      "type": "boolean",
+      "offset": "0x7",
+      "bit": 3,
+      "group": "progress",
+      "order": 6
+    },
+    {
+      "id": "stats",
+      "name": "Stats",
+      "type": "struct",
+      "offset": "0x8",
+      "group": "stats",
+      "order": 0,
+      "fields": [
+        { "id": "strength", "name": "Strength", "type": "uint8", "offset": "0x0", "min": 0, "max": 99 },
+        { "id": "defense", "name": "Defense", "type": "uint8", "offset": "0x1", "min": 0, "max": 99 },
+        { "id": "speed", "name": "Speed", "type": "uint8", "offset": "0x2", "min": 0, "max": 99 },
+        { "id": "hp", "name": "HP", "type": "uint16", "offset": "0x3", "endianness": "little", "min": 0, "max": 9999 },
+        {
+          "id": "magicPercent",
+          "name": "Magic %",
+          "type": "uint8",
+          "offset": "0x5",
+          "transform": [{ "type": "scale", "divisor": 2 }],
+          "min": 0,
+          "max": 100
+        }
+      ]
+    }
+  ]
+}

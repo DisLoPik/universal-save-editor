@@ -1,0 +1,116 @@
+{
+  "id": "pokemon-diamond-pearl-ds-usa-v1",
+  "game": "Pokémon Diamond/Pearl",
+  "platform": "Nintendo DS",
+  "region": "USA",
+  "version": "1.0",
+  "author": "Universal Save Editor (community research)",
+  "license": "MIT",
+  "description": "Real-game schema, built from public documentation (Bulbapedia's 'Save data structure (Generation IV)' page and Project Pokémon's DP Save Structure / NDS checksum docs) rather than a captured real save file — NOT independently verified against an actual save or the game's own behavior. Covers only the primary save block-pair's small block (trainer info); the backup block-pair and the Pokémon party/box data are out of scope. Diamond and Pearl share this engine/layout; Platinum and HeartGold/SoulSilver use different offsets and are NOT covered by this schema. If you test this against a real save, please report back so it can be corrected or confirmed.",
+  "lastUpdated": "2026-08-11",
+  "schemaVersion": 1,
+  "fingerprints": [
+    {
+      "id": "usa-v1",
+      "description": "Exact 512KB save size plus a self-consistent CRC16 over the small block — a checksum that validates is strong evidence independent of any single fixed byte guess.",
+      "rules": [
+        { "type": "fileSize", "value": 524288 },
+        {
+          "type": "checksumMatch",
+          "algorithm": "crc16",
+          "dataRange": { "start": "0x0", "end": "0xC0EC" },
+          "storedAt": "0xC0FE",
+          "endianness": "little"
+        }
+      ]
+    }
+  ],
+  "groups": [{ "id": "trainer", "name": "Trainer", "order": 0 }],
+  "fields": [
+    {
+      "id": "trainerNameRaw",
+      "name": "Trainer Name (raw bytes)",
+      "type": "hexBytes",
+      "offset": "0x68",
+      "length": 16,
+      "description": "Generation IV games use a proprietary character encoding (not ASCII/UTF-16), which this schema does not yet decode — shown as raw bytes so it can still be inspected/edited without silently corrupting it into garbled in-game text.",
+      "group": "trainer",
+      "order": 0
+    },
+    {
+      "id": "trainerId",
+      "name": "Trainer ID",
+      "type": "uint16",
+      "offset": "0x78",
+      "endianness": "little",
+      "min": 0,
+      "max": 65535,
+      "group": "trainer",
+      "order": 1
+    },
+    {
+      "id": "secretId",
+      "name": "Secret ID",
+      "type": "uint16",
+      "offset": "0x7A",
+      "endianness": "little",
+      "min": 0,
+      "max": 65535,
+      "group": "trainer",
+      "order": 2
+    },
+    {
+      "id": "money",
+      "name": "Money",
+      "type": "uint32",
+      "offset": "0x7C",
+      "endianness": "little",
+      "min": 0,
+      "max": 999999,
+      "group": "trainer",
+      "order": 3
+    },
+    {
+      "id": "playTimeHours",
+      "name": "Play Time (hours)",
+      "type": "uint16",
+      "offset": "0x8A",
+      "endianness": "little",
+      "min": 0,
+      "max": 999,
+      "group": "trainer",
+      "order": 4
+    },
+    {
+      "id": "playTimeMinutes",
+      "name": "Play Time (minutes)",
+      "type": "uint8",
+      "offset": "0x8C",
+      "min": 0,
+      "max": 59,
+      "group": "trainer",
+      "order": 5
+    },
+    {
+      "id": "playTimeSeconds",
+      "name": "Play Time (seconds)",
+      "type": "uint8",
+      "offset": "0x8D",
+      "min": 0,
+      "max": 59,
+      "group": "trainer",
+      "order": 6
+    }
+  ],
+  "checksums": [
+    {
+      "id": "smallBlock1",
+      "type": "checksum",
+      "algorithm": "crc16",
+      "dataRange": { "start": "0x0", "end": "0xC0EC" },
+      "writeOffset": "0xC0FE",
+      "endianness": "little",
+      "description": "Recalculated after any edit in the primary block-pair's small block. The backup block-pair (offset +0x40000) is intentionally left untouched by this schema."
+    }
+  ]
+}

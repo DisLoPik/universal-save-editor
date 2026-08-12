@@ -1,0 +1,10 @@
+# Cloudflare Pages configuration.
+#
+# This project is a 100% static, client-side site (Vite + React) — no
+# Cloudflare Worker/Functions runtime is required. This file only exists so
+# `wrangler pages deploy` and `wrangler pages dev` know where the build
+# output lives; Pages' dashboard "Connect to Git" flow does not need it at
+# all (build command `npm run build`, output directory `dist`).
+name = "universal-save-editor"
+pages_build_output_dir = "dist"
+compatibility_date = "2024-09-01"

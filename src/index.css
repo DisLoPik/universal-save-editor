@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: theme('colors.bg.DEFAULT');
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+::selection {
+  background-color: theme('colors.accent.muted');
+}
+
+* {
+  scrollbar-color: theme('colors.border.DEFAULT') transparent;
+  scrollbar-width: thin;
+}

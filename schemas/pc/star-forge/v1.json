@@ -1,0 +1,91 @@
+{
+  "id": "star-forge-pc-v1",
+  "game": "Star Forge",
+  "platform": "PC",
+  "region": "Global",
+  "version": "1.0",
+  "author": "Universal Save Editor examples",
+  "license": "MIT",
+  "description": "Fictional example game demonstrating a CRC32-checksum-protected save with a struct and an array of struct items. Not a real commercial game.",
+  "lastUpdated": "2026-08-11",
+  "schemaVersion": 1,
+  "fingerprints": [
+    {
+      "id": "v1",
+      "description": "Magic bytes + format version byte + exact file size",
+      "rules": [
+        { "type": "fileSize", "value": 68 },
+        { "type": "bytes", "offset": "0x0", "value": "53 46 52 47" },
+        { "type": "bytes", "offset": "0x4", "value": "01" }
+      ]
+    }
+  ],
+  "groups": [
+    { "id": "player", "name": "Player", "order": 0 },
+    { "id": "inventory", "name": "Inventory", "order": 1 }
+  ],
+  "fields": [
+    {
+      "id": "stats",
+      "name": "Stats",
+      "type": "struct",
+      "offset": "0x8",
+      "group": "player",
+      "order": 0,
+      "fields": [
+        { "id": "hp", "name": "HP", "type": "uint16", "offset": "0x0", "endianness": "little", "min": 0, "max": 9999 },
+        { "id": "mp", "name": "MP", "type": "uint16", "offset": "0x2", "endianness": "little", "min": 0, "max": 999 },
+        { "id": "atk", "name": "Attack", "type": "uint8", "offset": "0x4", "min": 0, "max": 99 },
+        { "id": "def", "name": "Defense", "type": "uint8", "offset": "0x5", "min": 0, "max": 99 }
+      ]
+    },
+    {
+      "id": "gold",
+      "name": "Gold",
+      "type": "uint32",
+      "offset": "0x10",
+      "endianness": "little",
+      "min": 0,
+      "max": 9999999,
+      "group": "player",
+      "order": 1
+    },
+    {
+      "id": "inventory",
+      "name": "Inventory Slot",
+      "type": "array",
+      "offset": "0x20",
+      "count": 5,
+      "stride": "0x4",
+      "group": "inventory",
+      "order": 0,
+      "items": {
+        "id": "slot",
+        "name": "Item",
+        "type": "struct",
+        "fields": [
+          {
+            "id": "itemId",
+            "name": "Item",
+            "type": "enum",
+            "offset": "0x0",
+            "storageType": "uint16",
+            "values": { "0": "Empty", "1": "Potion", "2": "Ether", "3": "Elixir", "4": "Phoenix Down" }
+          },
+          { "id": "quantity", "name": "Quantity", "type": "uint16", "offset": "0x2", "min": 0, "max": 999 }
+        ]
+      }
+    }
+  ],
+  "checksums": [
+    {
+      "id": "main",
+      "type": "checksum",
+      "algorithm": "crc32",
+      "dataRange": { "start": "0x0", "end": "0x40" },
+      "writeOffset": "0x40",
+      "endianness": "little",
+      "description": "CRC32 over bytes 0x00-0x3F, stored at 0x40."
+    }
+  ]
+}

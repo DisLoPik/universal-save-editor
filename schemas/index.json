@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-08-11",
+  "schemas": [
+    {
+      "id": "pixel-quest-3ds-usa-v1",
+      "path": "nintendo-3ds/pixel-quest/usa-v1.json",
+      "game": "Pixel Quest",
+      "platform": "Nintendo 3DS"
+    },
+    {
+      "id": "iron-keep-gbc-usa-v1",
+      "path": "gbc/iron-keep/usa-v1.json",
+      "game": "Iron Keep",
+      "platform": "Game Boy Color"
+    },
+    {
+      "id": "star-forge-pc-v1",
+      "path": "pc/star-forge/v1.json",
+      "game": "Star Forge",
+      "platform": "PC"
+    },
+    {
+      "id": "pokemon-diamond-pearl-ds-usa-v1",
+      "path": "nintendo-ds/pokemon-diamond-pearl/usa-v1.json",
+      "game": "Pokémon Diamond/Pearl",
+      "platform": "Nintendo DS"
+    },
+    {
+      "id": "lego-batman-lotdk-pc-steam-v1",
+      "path": "pc/lego-batman-lotdk/steam-v1.json",
+      "game": "LEGO Batman: Legacy of the Dark Knight",
+      "platform": "PC"
+    }
+  ]
+}

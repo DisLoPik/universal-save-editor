@@ -1,0 +1,91 @@
+{
+  "id": "pixel-quest-3ds-usa-v1",
+  "game": "Pixel Quest",
+  "platform": "Nintendo 3DS",
+  "region": "USA",
+  "version": "1.0.0",
+  "author": "Universal Save Editor examples",
+  "license": "MIT",
+  "description": "Fictional example game demonstrating a simple, fixed-offset save format: a fixed string, an integer, a boolean flag, a float, and a raw byte array. Not a real commercial game.",
+  "lastUpdated": "2026-08-11",
+  "schemaVersion": 1,
+  "fingerprints": [
+    {
+      "id": "usa-v1",
+      "description": "Magic bytes + format version byte + exact file size",
+      "rules": [
+        { "type": "fileSize", "value": 128 },
+        { "type": "bytes", "offset": "0x0", "value": "50 58 4C 51 53 54 30 31" },
+        { "type": "bytes", "offset": "0x2A", "value": "01" }
+      ]
+    }
+  ],
+  "groups": [
+    { "id": "player", "name": "Player", "order": 0 },
+    { "id": "advanced", "name": "Advanced", "order": 1 }
+  ],
+  "fields": [
+    {
+      "id": "playerName",
+      "name": "Player Name",
+      "type": "string",
+      "offset": "0x8",
+      "length": 16,
+      "encoding": "ascii",
+      "group": "player",
+      "order": 0
+    },
+    {
+      "id": "level",
+      "name": "Level",
+      "type": "uint8",
+      "offset": "0x18",
+      "min": 1,
+      "max": 100,
+      "group": "player",
+      "order": 1
+    },
+    {
+      "id": "money",
+      "name": "Money",
+      "type": "uint32",
+      "offset": "0x19",
+      "endianness": "little",
+      "min": 0,
+      "max": 999999,
+      "group": "player",
+      "order": 2
+    },
+    {
+      "id": "hardcoreMode",
+      "name": "Hardcore Mode",
+      "type": "boolean",
+      "offset": "0x1D",
+      "bit": 0,
+      "group": "player",
+      "order": 3
+    },
+    {
+      "id": "difficultyMultiplier",
+      "name": "Difficulty Multiplier",
+      "type": "float32",
+      "offset": "0x1E",
+      "endianness": "little",
+      "min": 0.1,
+      "max": 5,
+      "step": 0.1,
+      "group": "advanced",
+      "order": 0
+    },
+    {
+      "id": "secretSeed",
+      "name": "Secret Seed",
+      "type": "hexBytes",
+      "offset": "0x22",
+      "length": 8,
+      "readOnly": false,
+      "group": "advanced",
+      "order": 1
+    }
+  ]
+}

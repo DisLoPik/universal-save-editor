@@ -25,3 +25,16 @@ SOFTWARE.
 Community schema files under `schemas/` are contributed independently and may
 carry their own `license` field in their metadata; check each schema file's
 metadata before reuse. Where unspecified, MIT applies.
+
+---
+
+`public/community-editors/` vendors third-party save editors from
+marcrobledo/savegame-editors (https://github.com/marcrobledo/savegame-editors),
+Copyright (c) 2017-2023 Marc Robledo, MIT licensed, with individual games
+credited to their original contributors (see each editor's own "by" byline
+and `public/community-editors/LICENSE-savegame-editors.txt`). That project in
+turn incorporates Octicons (https://github.com/primer/octicons/), Copyright
+(c) 2023 GitHub Inc., MIT licensed. zelda-totk additionally vendors fflate
+(https://github.com/101arrowz/fflate), MIT licensed. See
+`public/community-editors/NOTICE.md` for the full list of deployment changes
+made to this third-party code.

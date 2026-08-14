@@ -4,6 +4,7 @@ import { Header } from './ui/components/Header';
 import { Footer } from './ui/components/Footer';
 import { HomePage } from './ui/pages/HomePage';
 import { SupportedGamesPage } from './ui/pages/SupportedGamesPage';
+import { CommunityEditorsPage } from './ui/pages/CommunityEditorsPage';
 import { DocsPage } from './ui/pages/DocsPage';
 import { AboutPage } from './ui/pages/AboutPage';
 import { useSchemasStore } from './app/schemas-store';
@@ -25,6 +26,7 @@ export function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/supported-games" element={<SupportedGamesPage />} />
+            <Route path="/community-editors" element={<CommunityEditorsPage />} />
             <Route path="/docs" element={<DocsPage />} />
             <Route path="/about" element={<AboutPage />} />
           </Routes>

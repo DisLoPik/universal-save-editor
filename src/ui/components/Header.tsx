@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 const NAV_LINKS = [
   { to: '/', label: 'Editor', end: true },
   { to: '/supported-games', label: 'Supported Games' },
+  { to: '/community-editors', label: 'Community Editors' },
   { to: '/docs', label: 'Docs' },
   { to: '/about', label: 'About' },
 ];

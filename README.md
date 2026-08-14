@@ -99,6 +99,20 @@ sample file), and Wii/Wii U (Wii's save encryption key is real, long-public, and
 backup tools, but embedding a reverse-engineered platform key is a deliberate judgment call left to a maintainer
 rather than a default; Wii U saves are genuinely console-bound and impractical to support at all).
 
+## Community editors
+
+Separate from the schema-driven engine above, `/community-editors` bundles 20 standalone, game-specific save
+editors vendored from [marcrobledo/savegame-editors](https://github.com/marcrobledo/savegame-editors) (MIT
+licensed, Copyright (c) 2017-2023 Marc Robledo, with `nintendogs+cats` and `the-lego-movie-videogame` credited to
+[Magiczocker](https://github.com/magiczocker10)). These are full bespoke tools — plain HTML/CSS/JS, no schema, no
+shared engine — kept as close to their upstream form as possible and still 100% client-side. See
+`public/community-editors/NOTICE.md` for the exact (small) set of changes made so they run on this deployment
+(dropped a stale service-worker registration that hardcoded the upstream site's own paths, fixed an author-credit
+link that pointed at `/`, self-hosted one CDN script dependency, and excluded a few personal sample-save files that
+turned out not to be required by the tools). Because these editors rely on inline event-handler attributes, they
+get their own relaxed `script-src` in `public/_headers` scoped to `/community-editors/*` only — the rest of the
+site keeps the strict policy described below.
+
 ## Security posture
 
 - No `eval`, no arbitrary expression evaluation from schema data — transformations are a fixed, whitelisted,

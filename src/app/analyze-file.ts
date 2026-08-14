@@ -22,7 +22,7 @@ export async function analyzeFile(file: File, schemas: SaveSchema[]): Promise<An
   const { analysis, buffer: returnedBuffer } = await client.analyze(buffer);
 
   let session: SaveSession | null = null;
-  if (analysis.bestMatch) {
+  if (analysis.bestMatch && !analysis.bestMatch.schema.communityEditor) {
     session = await SaveSession.create({
       originalBuffer: returnedBuffer,
       fileName: file.name,

@@ -1,0 +1,25 @@
+{
+  "id": "community-editor-mario-kart-7",
+  "game": "Mario Kart 7",
+  "platform": "Nintendo 3DS",
+  "author": "Marc Robledo",
+  "license": "MIT",
+  "description": "Fingerprint sourced directly from mario-kart-7.js's own checkValidSavegame() (vendored at /community-editors/mario-kart-7/mario-kart-7.js): return tempFile.fileSize === 20692. This app has no inline field editor for this game — a match here redirects to the bundled standalone community editor instead of opening the schema-driven editor UI.",
+  "schemaVersion": 1,
+  "fingerprints": [
+    {
+      "id": "exact-size",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 20692,
+          "weight": 60
+        }
+      ]
+    }
+  ],
+  "fields": [],
+  "communityEditor": {
+    "slug": "mario-kart-7"
+  }
+}

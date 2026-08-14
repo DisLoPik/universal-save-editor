@@ -204,6 +204,10 @@ const schemaGroupZod = z.object({
   description: z.string().optional(),
 });
 
+const communityEditorLinkZod = z.object({
+  slug: z.string().regex(/^[a-z0-9+]+(-[a-z0-9+]+)*$/, 'slug must match a /community-editors directory name'),
+});
+
 export const saveSchemaZod = z.object({
   id: z.string().min(1).regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'id must be kebab-case: lowercase letters, digits, and hyphens only'),
   game: z.string().min(1),
@@ -218,9 +222,12 @@ export const saveSchemaZod = z.object({
   fingerprints: z.array(fingerprintSetZod).min(1, 'schema must define at least one fingerprint'),
   baseOffsets: z.record(offsetValue).optional(),
   groups: z.array(schemaGroupZod).optional(),
-  fields: z.array(fieldSchemaZod).min(1, 'schema must define at least one field'),
+  // Non-empty is enforced in semantic validation below, EXCEPT for
+  // communityEditor pointer schemas, which must be empty instead.
+  fields: z.array(fieldSchemaZod),
   checksums: z.array(checksumDefinitionZod).optional(),
   encryption: z.array(encryptionRegionZod).optional(),
+  communityEditor: communityEditorLinkZod.optional(),
 });
 
 /* ------------------------------------------------------------------ */
@@ -391,6 +398,20 @@ export function validateSchema(input: unknown): SchemaValidationResult {
 
   const schema = parsed.data as SaveSchema;
   const errors: string[] = [];
+
+  if (schema.communityEditor) {
+    if (schema.fields.length > 0) {
+      errors.push('a schema with "communityEditor" set must have an empty "fields" array — it points to a standalone external editor instead of defining editable fields');
+    }
+    if (schema.checksums && schema.checksums.length > 0) {
+      errors.push('a schema with "communityEditor" set must not define "checksums" (nothing is ever edited/exported through this app for it)');
+    }
+    if (schema.encryption && schema.encryption.length > 0) {
+      errors.push('a schema with "communityEditor" set must not define "encryption" (nothing is ever decrypted/read through this app for it)');
+    }
+  } else if (schema.fields.length === 0) {
+    errors.push('schema must define at least one field (or set "communityEditor" to link out to a standalone editor instead)');
+  }
 
   const allIds = collectFieldIds(schema.fields);
   const dupes = findDuplicates(allIds);

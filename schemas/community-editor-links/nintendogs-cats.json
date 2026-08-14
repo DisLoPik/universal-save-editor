@@ -1,0 +1,25 @@
+{
+  "id": "community-editor-nintendogs-cats",
+  "game": "Nintendogs + Cats",
+  "platform": "Nintendo 3DS",
+  "author": "Magiczocker",
+  "license": "MIT",
+  "description": "Fingerprint sourced directly from nintendogs+cats.js's own checkValidSavegame() (vendored at /community-editors/nintendogs+cats/nintendogs+cats.js): return tempFile.fileSize === 60936. This app has no inline field editor for this game — a match here redirects to the bundled standalone community editor instead of opening the schema-driven editor UI.",
+  "schemaVersion": 1,
+  "fingerprints": [
+    {
+      "id": "exact-size",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 60936,
+          "weight": 60
+        }
+      ]
+    }
+  ],
+  "fields": [],
+  "communityEditor": {
+    "slug": "nintendogs+cats"
+  }
+}

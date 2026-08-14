@@ -1,0 +1,751 @@
+{
+  "id": "community-editor-zelda-botw",
+  "game": "The Legend of Zelda: Breath of the Wild",
+  "platform": "Wii U / Nintendo Switch",
+  "author": "Marc Robledo",
+  "license": "MIT",
+  "description": "Fingerprint sourced directly from zelda-botw.js's own checkValidSavegame() (vendored at /community-editors/zelda-botw/zelda-botw.js): _checkValidSavegameByConsole() checks tempFile.fileSize against a per-version Constants.FILESIZE table, a 4-byte version header at offset 0 (read big-endian on Wii U, little-endian on Switch) against Constants.HEADER, and 4 bytes of 0xFF at offset 4, across all 16 known versions/revisions. This app has no inline field editor for this game — a match here redirects to the bundled standalone community editor instead of opening the schema-driven editor UI.",
+  "schemaVersion": 1,
+  "fingerprints": [
+    {
+      "id": "wiiu-0-v1.0",
+      "description": "v1.0 (Wii U)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 896976,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "00 00 24 e2",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "switch-0-v1.0",
+      "description": "v1.0 (Switch)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 896976,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "e2 24 00 00",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "wiiu-1-v1.1",
+      "description": "v1.1 (Wii U)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 897160,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "00 00 24 ee",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "switch-1-v1.1",
+      "description": "v1.1 (Switch)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 897160,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "ee 24 00 00",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "wiiu-2-v1.2",
+      "description": "v1.2 (Wii U)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 897112,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "00 00 25 88",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "switch-2-v1.2",
+      "description": "v1.2 (Switch)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 897112,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "88 25 00 00",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "wiiu-3-v1.3",
+      "description": "v1.3 (Wii U)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 907824,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "00 00 29 c0",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "switch-3-v1.3",
+      "description": "v1.3 (Switch)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 907824,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "c0 29 00 00",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "wiiu-4-v1.3.1",
+      "description": "v1.3.1 (Wii U)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 907824,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "00 00 2a 46",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "switch-4-v1.3.1",
+      "description": "v1.3.1 (Switch)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 907824,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "46 2a 00 00",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "wiiu-5-Kiosk",
+      "description": "Kiosk (Wii U)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 916576,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "00 00 2f 8e",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "switch-5-Kiosk",
+      "description": "Kiosk (Switch)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 916576,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "8e 2f 00 00",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "wiiu-6-v1.3.3",
+      "description": "v1.3.3 (Wii U)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1020648,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "00 00 3e f8",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "switch-6-v1.3.3",
+      "description": "v1.3.3 (Switch)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1020648,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "f8 3e 00 00",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "wiiu-7-v1.3.4",
+      "description": "v1.3.4 (Wii U)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1020648,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "00 00 3e f9",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "switch-7-v1.3.4",
+      "description": "v1.3.4 (Switch)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1020648,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "f9 3e 00 00",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "wiiu-8-v1.4",
+      "description": "v1.4 (Wii U)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1027208,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "00 00 47 1a",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "switch-8-v1.4",
+      "description": "v1.4 (Switch)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1027208,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "1a 47 00 00",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "wiiu-9-v1.5",
+      "description": "v1.5 (Wii U)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1027208,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "00 00 47 1b",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "switch-9-v1.5",
+      "description": "v1.5 (Switch)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1027208,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "1b 47 00 00",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "wiiu-10-v1.5*",
+      "description": "v1.5* (Wii U)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1027248,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "00 00 47 1b",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "switch-10-v1.5*",
+      "description": "v1.5* (Switch)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1027248,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "1b 47 00 00",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "wiiu-11-v1.6",
+      "description": "v1.6 (Wii U)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1027216,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "00 00 47 1e",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "switch-11-v1.6",
+      "description": "v1.6 (Switch)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1027216,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "1e 47 00 00",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "wiiu-12-v1.6*",
+      "description": "v1.6* (Wii U)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1027216,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "00 0f 42 3d",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "switch-12-v1.6*",
+      "description": "v1.6* (Switch)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1027216,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "3d 42 0f 00",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "wiiu-13-v1.6**",
+      "description": "v1.6** (Wii U)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1027216,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "00 0f 42 3e",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "switch-13-v1.6**",
+      "description": "v1.6** (Switch)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1027216,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "3e 42 0f 00",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "wiiu-14-v1.6***",
+      "description": "v1.6*** (Wii U)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1027216,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "00 0f 42 3f",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "switch-14-v1.6***",
+      "description": "v1.6*** (Switch)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1027216,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "3f 42 0f 00",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "wiiu-15-v1.8",
+      "description": "v1.8 (Wii U)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1027248,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "00 00 47 30",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    },
+    {
+      "id": "switch-15-v1.8",
+      "description": "v1.8 (Switch)",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1027248,
+          "weight": 20
+        },
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "30 47 00 00",
+          "weight": 25
+        },
+        {
+          "type": "bytes",
+          "offset": 4,
+          "value": "ff ff ff ff",
+          "weight": 15
+        }
+      ]
+    }
+  ],
+  "fields": [],
+  "communityEditor": {
+    "slug": "zelda-botw"
+  }
+}

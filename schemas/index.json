@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-11",
+  "updatedAt": "2026-08-13",
   "schemas": [
     {
       "id": "pixel-quest-3ds-usa-v1",
@@ -31,6 +31,126 @@
       "path": "pc/lego-batman-lotdk/steam-v1.json",
       "game": "LEGO Batman: Legacy of the Dark Knight",
       "platform": "PC"
+    },
+    {
+      "id": "community-editor-final-fantasy-explorers",
+      "path": "community-editor-links/final-fantasy-explorers.json",
+      "game": "Final Fantasy Explorers",
+      "platform": "Nintendo 3DS"
+    },
+    {
+      "id": "community-editor-hyrule-warriors-age-of-calamity",
+      "path": "community-editor-links/hyrule-warriors-age-of-calamity.json",
+      "game": "Hyrule Warriors: Age of Calamity",
+      "platform": "Nintendo Switch"
+    },
+    {
+      "id": "community-editor-hyrule-warriors",
+      "path": "community-editor-links/hyrule-warriors.json",
+      "game": "Hyrule Warriors",
+      "platform": "Wii U"
+    },
+    {
+      "id": "community-editor-kid-icarus-uprising",
+      "path": "community-editor-links/kid-icarus-uprising.json",
+      "game": "Kid Icarus: Uprising",
+      "platform": "Nintendo 3DS"
+    },
+    {
+      "id": "community-editor-kirbys-blowout-blast",
+      "path": "community-editor-links/kirbys-blowout-blast.json",
+      "game": "Kirby's Blowout Blast",
+      "platform": "Nintendo 3DS"
+    },
+    {
+      "id": "community-editor-mario-kart-7",
+      "path": "community-editor-links/mario-kart-7.json",
+      "game": "Mario Kart 7",
+      "platform": "Nintendo 3DS"
+    },
+    {
+      "id": "community-editor-nintendogs-cats",
+      "path": "community-editor-links/nintendogs-cats.json",
+      "game": "Nintendogs + Cats",
+      "platform": "Nintendo 3DS"
+    },
+    {
+      "id": "community-editor-picross-3d-round-2",
+      "path": "community-editor-links/picross-3d-round-2.json",
+      "game": "Picross 3D: Round 2",
+      "platform": "Nintendo 3DS"
+    },
+    {
+      "id": "community-editor-picross-e",
+      "path": "community-editor-links/picross-e.json",
+      "game": "PICROSS e",
+      "platform": "Nintendo 3DS"
+    },
+    {
+      "id": "community-editor-pokemon-picross",
+      "path": "community-editor-links/pokemon-picross.json",
+      "game": "Pokémon Picross",
+      "platform": "Nintendo 3DS"
+    },
+    {
+      "id": "community-editor-pokemon-shuffle",
+      "path": "community-editor-links/pokemon-shuffle.json",
+      "game": "Pokémon Shuffle",
+      "platform": "Nintendo 3DS"
+    },
+    {
+      "id": "community-editor-rhythm-paradise-megamix",
+      "path": "community-editor-links/rhythm-paradise-megamix.json",
+      "game": "Rhythm Paradise / Heaven Megamix",
+      "platform": "Nintendo 3DS"
+    },
+    {
+      "id": "community-editor-smash-bros-ultimate",
+      "path": "community-editor-links/smash-bros-ultimate.json",
+      "game": "Super Smash Bros. Ultimate",
+      "platform": "Nintendo Switch"
+    },
+    {
+      "id": "community-editor-streetpass-mii-plaza",
+      "path": "community-editor-links/streetpass-mii-plaza.json",
+      "game": "StreetPass Mii Plaza",
+      "platform": "Nintendo 3DS"
+    },
+    {
+      "id": "community-editor-super-kirby-clash",
+      "path": "community-editor-links/super-kirby-clash.json",
+      "game": "Super Kirby Clash",
+      "platform": "Nintendo Switch"
+    },
+    {
+      "id": "community-editor-sushi-striker",
+      "path": "community-editor-links/sushi-striker.json",
+      "game": "Sushi Striker: The Way of Sushido",
+      "platform": "Nintendo 3DS"
+    },
+    {
+      "id": "community-editor-team-kirby-clash-dx",
+      "path": "community-editor-links/team-kirby-clash-dx.json",
+      "game": "Team Kirby Clash Deluxe",
+      "platform": "Nintendo 3DS"
+    },
+    {
+      "id": "community-editor-the-lego-movie-videogame",
+      "path": "community-editor-links/the-lego-movie-videogame.json",
+      "game": "The Lego Movie Videogame",
+      "platform": "Nintendo 3DS"
+    },
+    {
+      "id": "community-editor-zelda-botw",
+      "path": "community-editor-links/zelda-botw.json",
+      "game": "The Legend of Zelda: Breath of the Wild",
+      "platform": "Wii U / Nintendo Switch"
+    },
+    {
+      "id": "community-editor-zelda-totk",
+      "path": "community-editor-links/zelda-totk.json",
+      "game": "The Legend of Zelda: Tears of the Kingdom",
+      "platform": "Nintendo Switch"
     }
   ]
 }

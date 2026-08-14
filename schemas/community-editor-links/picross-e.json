@@ -1,0 +1,114 @@
+{
+  "id": "community-editor-picross-e",
+  "game": "PICROSS e",
+  "platform": "Nintendo 3DS",
+  "author": "Marc Robledo",
+  "license": "MIT",
+  "description": "Fingerprint sourced directly from picross-e.js's own checkValidSavegame() (vendored at /community-editors/picross-e/picross-e.js): a chain of exact tempFile.fileSize checks, one per PICROSS e sub-title (e through e9, Club Nintendo Picross, My Nintendo PICROSS). This app has no inline field editor for this game — a match here redirects to the bundled standalone community editor instead of opening the schema-driven editor UI.",
+  "schemaVersion": 1,
+  "fingerprints": [
+    {
+      "id": "size-0-picross-e",
+      "description": "Picross e",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 740,
+          "weight": 60
+        }
+      ]
+    },
+    {
+      "id": "size-1-picross-e2",
+      "description": "Picross e2",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1880,
+          "weight": 60
+        }
+      ]
+    },
+    {
+      "id": "size-2-picross-e3",
+      "description": "Picross e3",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 828,
+          "weight": 60
+        }
+      ]
+    },
+    {
+      "id": "size-3-picross-e4",
+      "description": "Picross e4",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1436,
+          "weight": 60
+        }
+      ]
+    },
+    {
+      "id": "size-4-picross-e5",
+      "description": "Picross e5",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1688,
+          "weight": 60
+        }
+      ]
+    },
+    {
+      "id": "size-5-picross-e6",
+      "description": "Picross e6",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 2228,
+          "weight": 60
+        }
+      ]
+    },
+    {
+      "id": "size-6-picross-e7-e9",
+      "description": "Picross e7-e9",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 2328,
+          "weight": 60
+        }
+      ]
+    },
+    {
+      "id": "size-7-club-nintendo-picross",
+      "description": "Club Nintendo Picross",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 988,
+          "weight": 60
+        }
+      ]
+    },
+    {
+      "id": "size-8-my-nintendo-picross",
+      "description": "My Nintendo PICROSS",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 920,
+          "weight": 60
+        }
+      ]
+    }
+  ],
+  "fields": [],
+  "communityEditor": {
+    "slug": "picross-e"
+  }
+}

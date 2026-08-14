@@ -1,0 +1,25 @@
+{
+  "id": "community-editor-pokemon-picross",
+  "game": "Pokémon Picross",
+  "platform": "Nintendo 3DS",
+  "author": "Marc Robledo",
+  "license": "MIT",
+  "description": "Fingerprint sourced directly from pokemon-picross.js's own checkValidSavegame() (vendored at /community-editors/pokemon-picross/pokemon-picross.js): return tempFile.fileSize === 14920. This app has no inline field editor for this game — a match here redirects to the bundled standalone community editor instead of opening the schema-driven editor UI.",
+  "schemaVersion": 1,
+  "fingerprints": [
+    {
+      "id": "exact-size",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 14920,
+          "weight": 60
+        }
+      ]
+    }
+  ],
+  "fields": [],
+  "communityEditor": {
+    "slug": "pokemon-picross"
+  }
+}

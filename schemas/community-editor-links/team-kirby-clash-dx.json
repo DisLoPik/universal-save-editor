@@ -1,0 +1,25 @@
+{
+  "id": "community-editor-team-kirby-clash-dx",
+  "game": "Team Kirby Clash Deluxe",
+  "platform": "Nintendo 3DS",
+  "author": "Marc Robledo",
+  "license": "MIT",
+  "description": "Fingerprint sourced directly from team-kirby-clash-dx.js's own checkValidSavegame() (vendored at /community-editors/team-kirby-clash-dx/team-kirby-clash-dx.js): return tempFile.fileSize === 8464. This app has no inline field editor for this game — a match here redirects to the bundled standalone community editor instead of opening the schema-driven editor UI.",
+  "schemaVersion": 1,
+  "fingerprints": [
+    {
+      "id": "exact-size",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 8464,
+          "weight": 60
+        }
+      ]
+    }
+  ],
+  "fields": [],
+  "communityEditor": {
+    "slug": "team-kirby-clash-dx"
+  }
+}

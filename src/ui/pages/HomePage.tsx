@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import { Dropzone } from '../components/Dropzone';
 import { FileSummary } from '../components/FileSummary';
 import { UnknownFormatScreen } from '../components/UnknownFormatScreen';
+import { CommunityEditorPrompt } from '../components/CommunityEditorPrompt';
 import { EditorPage } from './EditorPage';
 import { useSchemasStore } from '../../app/schemas-store';
 import { useEditorStore } from '../../editor/editor-store';
 import { analyzeFile } from '../../app/analyze-file';
 import type { FingerprintAnalysis } from '../../core/fingerprint/fingerprint-engine';
 
-type FlowState = 'idle' | 'analyzing' | 'unknown' | 'matched';
+type FlowState = 'idle' | 'analyzing' | 'unknown' | 'matched' | 'community-editor';
 
 export function HomePage() {
   const schemas = useSchemasStore((s) => s.schemas);
@@ -35,6 +36,8 @@ export function HomePage() {
         const { values } = result.session.readInitialValues();
         loadSession(result.session, values);
         setFlow('matched');
+      } else if (result.analysis.bestMatch?.schema.communityEditor) {
+        setFlow('community-editor');
       } else {
         setFlow('unknown');
       }
@@ -105,6 +108,16 @@ export function HomePage() {
 
       {flow === 'unknown' && analysis && (
         <UnknownFormatScreen fileName={fileName} fileSize={fileSize} analysis={analysis} onTryAnother={reset} />
+      )}
+
+      {flow === 'community-editor' && analysis?.bestMatch?.schema.communityEditor && (
+        <CommunityEditorPrompt
+          fileName={fileName}
+          fileSize={fileSize}
+          game={analysis.bestMatch.schema.game}
+          slug={analysis.bestMatch.schema.communityEditor.slug}
+          onCancel={reset}
+        />
       )}
     </div>
   );

@@ -125,4 +125,39 @@ describe('validateSchema', () => {
     );
     expect(result.valid).toBe(true);
   });
+
+  it('rejects a schema with no fields and no communityEditor', () => {
+    const result = validateSchema(baseSchema({ fields: [] }));
+    expect(result.valid).toBe(false);
+    expect(result.errors.some((e) => e.includes('at least one field'))).toBe(true);
+  });
+
+  it('accepts a communityEditor pointer schema with empty fields', () => {
+    const result = validateSchema(baseSchema({ fields: [], communityEditor: { slug: 'some-game' } }));
+    expect(result.valid).toBe(true);
+    expect(result.schema?.communityEditor).toEqual({ slug: 'some-game' });
+  });
+
+  it('accepts a communityEditor slug containing "+"', () => {
+    const result = validateSchema(baseSchema({ fields: [], communityEditor: { slug: 'nintendogs+cats' } }));
+    expect(result.valid).toBe(true);
+  });
+
+  it('rejects a communityEditor schema that also declares fields', () => {
+    const result = validateSchema(baseSchema({ communityEditor: { slug: 'some-game' } }));
+    expect(result.valid).toBe(false);
+    expect(result.errors.some((e) => e.includes('empty "fields" array'))).toBe(true);
+  });
+
+  it('rejects a communityEditor schema that also declares checksums', () => {
+    const result = validateSchema(
+      baseSchema({
+        fields: [],
+        communityEditor: { slug: 'some-game' },
+        checksums: [{ id: 'c1', type: 'checksum', algorithm: 'crc32', dataRange: { start: '0x0', end: '0x8' }, writeOffset: '0x8' }],
+      }),
+    );
+    expect(result.valid).toBe(false);
+    expect(result.errors.some((e) => e.includes('must not define "checksums"'))).toBe(true);
+  });
 });

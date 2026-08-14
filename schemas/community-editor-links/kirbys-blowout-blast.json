@@ -1,0 +1,25 @@
+{
+  "id": "community-editor-kirbys-blowout-blast",
+  "game": "Kirby's Blowout Blast",
+  "platform": "Nintendo 3DS",
+  "author": "Marc Robledo",
+  "license": "MIT",
+  "description": "Fingerprint sourced directly from kirbys-blowout-blast.js's own checkValidSavegame() (vendored at /community-editors/kirbys-blowout-blast/kirbys-blowout-blast.js): return tempFile.fileSize === 1736. This app has no inline field editor for this game — a match here redirects to the bundled standalone community editor instead of opening the schema-driven editor UI.",
+  "schemaVersion": 1,
+  "fingerprints": [
+    {
+      "id": "exact-size",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 1736,
+          "weight": 60
+        }
+      ]
+    }
+  ],
+  "fields": [],
+  "communityEditor": {
+    "slug": "kirbys-blowout-blast"
+  }
+}

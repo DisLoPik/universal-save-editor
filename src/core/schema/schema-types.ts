@@ -287,6 +287,21 @@ export interface SchemaGroup {
   description?: string;
 }
 
+/**
+ * A pointer to a standalone community editor (see /community-editors and
+ * public/community-editors/NOTICE.md) instead of an inline, field-by-field
+ * editable schema. Used for games supported by a bespoke third-party tool
+ * this app doesn't (and, for some formats, realistically can't) model with
+ * the generic field engine. A schema carrying this MUST have an empty
+ * `fields` array — fingerprinting still runs normally, but a match is
+ * surfaced as a "want to open the community editor?" prompt instead of the
+ * field editor UI.
+ */
+export interface CommunityEditorLink {
+  /** Matches the directory name under /community-editors/. */
+  slug: string;
+}
+
 export interface SaveSchema {
   id: string;
   game: string;
@@ -306,6 +321,7 @@ export interface SaveSchema {
   checksums?: ChecksumDefinition[];
   /** Regions to decrypt before fields/checksums are read, and re-encrypt (in reverse order) on export. */
   encryption?: EncryptionRegion[];
+  communityEditor?: CommunityEditorLink;
 }
 
 /* ------------------------------------------------------------------ */

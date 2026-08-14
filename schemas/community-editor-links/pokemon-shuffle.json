@@ -1,0 +1,35 @@
+{
+  "id": "community-editor-pokemon-shuffle",
+  "game": "Pokémon Shuffle",
+  "platform": "Nintendo 3DS",
+  "author": "Marc Robledo",
+  "license": "MIT",
+  "description": "Fingerprint sourced directly from pokemon-shuffle.js's own checkValidSavegame() (vendored at /community-editors/pokemon-shuffle/pokemon-shuffle.js): return tempFile.fileSize === 42039 || tempFile.fileSize === 74807. This app has no inline field editor for this game — a match here redirects to the bundled standalone community editor instead of opening the schema-driven editor UI.",
+  "schemaVersion": 1,
+  "fingerprints": [
+    {
+      "id": "size-1",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 42039,
+          "weight": 60
+        }
+      ]
+    },
+    {
+      "id": "size-2",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 74807,
+          "weight": 60
+        }
+      ]
+    }
+  ],
+  "fields": [],
+  "communityEditor": {
+    "slug": "pokemon-shuffle"
+  }
+}

@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useSchemasStore } from '../../app/schemas-store';
 import { Badge } from '../components/Badge';
 
@@ -30,7 +31,12 @@ export function SupportedGamesPage() {
       <h1 className="text-2xl font-semibold text-text">Supported Games</h1>
       <p className="mt-2 text-sm text-text-muted">
         Every game with a community schema currently loaded from the repository. Search by game, platform, region,
-        version, or author.
+        version, or author. A <strong className="text-text">Community editor</strong> badge means the game is
+        recognized but edited through a standalone tool under{' '}
+        <Link to="/community-editors" className="text-accent-hover underline decoration-dotted underline-offset-2">
+          Community Editors
+        </Link>{' '}
+        instead of the inline field editor.
       </p>
 
       <input
@@ -58,6 +64,11 @@ export function SupportedGamesPage() {
                     <Badge tone="accent">{schema.platform}</Badge>
                     {schema.region && <Badge tone="neutral">{schema.region}</Badge>}
                     {schema.version && <Badge tone="neutral">v{schema.version}</Badge>}
+                    {schema.communityEditor && (
+                      <a href={`/community-editors/${schema.communityEditor.slug}/`} title="Opens a standalone community editor, not the inline field editor above">
+                        <Badge tone="warning">Community editor ↗</Badge>
+                      </a>
+                    )}
                   </div>
                   <div className="text-xs text-text-faint">
                     {schema.author && <span>by {schema.author} • </span>}

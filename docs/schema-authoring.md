@@ -68,6 +68,30 @@ URL a deployment configures — so publishing a new schema does **not** require 
 - `schemaVersion` is the schema *format* version this file was authored against (currently `1`), not your schema's
   own revision — bump `version`/`lastUpdated` for that.
 
+### Pointing to a standalone community editor instead of fields
+
+Not every format fits the generic field engine — some need custom logic this app doesn't (yet) model. If a
+standalone browser editor for the game already exists and is vendored under `/community-editors` (see that
+directory's own `NOTICE.md`), a schema can link to it instead of defining fields:
+
+```json
+{
+  "id": "example-quest-3ds-usa-v1",
+  "game": "Example Quest",
+  "platform": "Nintendo 3DS",
+  "schemaVersion": 1,
+  "fingerprints": [ /* required, same as any other schema */ ],
+  "fields": [],
+  "communityEditor": { "slug": "example-quest" }
+}
+```
+
+`fields` (and `checksums`/`encryption`) must be empty when `communityEditor` is set — this app never reads or
+writes a single byte of the file for these; fingerprinting is still fully real, but a confident match surfaces a
+"want to open the community editor?" prompt on the upload page instead of the field editor. `slug` must match a
+directory name under `/community-editors`. See `schemas/community-editor-links/*.json` for 20 real examples, each
+with its fingerprint rules sourced directly from the vendored editor's own save-validation code.
+
 ## Fingerprints
 
 `fingerprints` is a list of independent **sets**. A save matches a set only if **every** rule inside it matches

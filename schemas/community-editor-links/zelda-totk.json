@@ -1,0 +1,32 @@
+{
+  "id": "community-editor-zelda-totk",
+  "game": "The Legend of Zelda: Tears of the Kingdom",
+  "platform": "Nintendo Switch",
+  "author": "Marc Robledo",
+  "license": "MIT",
+  "description": "Fingerprint sourced directly from zelda-totk.js's own checkValidSavegame() (vendored at /community-editors/zelda-totk/zelda-totk.js): checkValidSavegame() checks tempFile.readU32(0) === 0x01020304 (little-endian, i.e. bytes 04 03 02 01) and tempFile.fileSize in [2307552, 4194304) before locating the internal hash table. This app has no inline field editor for this game — a match here redirects to the bundled standalone community editor instead of opening the schema-driven editor UI.",
+  "schemaVersion": 1,
+  "fingerprints": [
+    {
+      "id": "magic-and-size",
+      "rules": [
+        {
+          "type": "bytes",
+          "offset": 0,
+          "value": "04 03 02 01",
+          "weight": 45
+        },
+        {
+          "type": "fileSize",
+          "value": 3250928,
+          "tolerance": 943376,
+          "weight": 15
+        }
+      ]
+    }
+  ],
+  "fields": [],
+  "communityEditor": {
+    "slug": "zelda-totk"
+  }
+}

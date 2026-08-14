@@ -1,0 +1,25 @@
+{
+  "id": "community-editor-kid-icarus-uprising",
+  "game": "Kid Icarus: Uprising",
+  "platform": "Nintendo 3DS",
+  "author": "Marc Robledo",
+  "license": "MIT",
+  "description": "Fingerprint sourced directly from kid-icarus-uprising.js's own checkValidSavegame() (vendored at /community-editors/kid-icarus-uprising/kid-icarus-uprising.js): return tempFile.fileSize === 66296. This app has no inline field editor for this game — a match here redirects to the bundled standalone community editor instead of opening the schema-driven editor UI.",
+  "schemaVersion": 1,
+  "fingerprints": [
+    {
+      "id": "exact-size",
+      "rules": [
+        {
+          "type": "fileSize",
+          "value": 66296,
+          "weight": 60
+        }
+      ]
+    }
+  ],
+  "fields": [],
+  "communityEditor": {
+    "slug": "kid-icarus-uprising"
+  }
+}

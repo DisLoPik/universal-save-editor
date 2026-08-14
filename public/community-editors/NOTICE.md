@@ -16,6 +16,12 @@ icon set.
 0.8.0 (MIT licensed), self-hosted here instead of loaded from `unpkg.com` (see
 below).
 
+Most games also bundle a small sample save file (e.g. `progress.sav`,
+`APP.BIN`, `savedata.dat` — whatever that game's own expected filename is).
+These aren't test leftovers: `savegame-editor.js`'s shared "Try an example
+savegame" button fetches that exact file, so every editor can offer a
+one-click demo. They're kept as shipped.
+
 ## What was changed for this deployment
 
 Everything else — every game's HTML structure, CSS, and JS logic — is
@@ -36,13 +42,6 @@ when served from this site's Cloudflare Worker instead of the upstream site:
   loaded from `unpkg.com`) as `zelda-totk/lib/fflate.min.js`, since this
   site's Content-Security-Policy doesn't allow loading scripts from third-party
   CDNs.
-- **Excluded personal sample-save files** bundled in a few of the upstream
-  folders (`progress.sav`, `game_data.sav`, `APP.BIN`, `svdt`,
-  `system_data.bin`, `meet.dat`). Each is only ever referenced in its game's
-  JS as the *expected* filename to recognize on upload — never fetched by the
-  app — so they aren't required for the tool to work, and look like the
-  author's own personal save data rather than a fixture meant for
-  redistribution.
 - **Relaxed this site's Content-Security-Policy for this one path only**
   (see `/public/_headers`). These editors rely on inline `onclick`-style
   event handlers throughout, which the main app's strict

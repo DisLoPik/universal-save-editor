@@ -108,8 +108,7 @@ licensed, Copyright (c) 2017-2023 Marc Robledo, with `nintendogs+cats` and `the-
 shared engine — kept as close to their upstream form as possible and still 100% client-side. See
 `public/community-editors/NOTICE.md` for the exact (small) set of changes made so they run on this deployment
 (dropped a stale service-worker registration that hardcoded the upstream site's own paths, fixed an author-credit
-link that pointed at `/`, self-hosted one CDN script dependency, and excluded a few personal sample-save files that
-turned out not to be required by the tools). Because these editors rely on inline event-handler attributes, they
+link that pointed at `/`, and self-hosted one CDN script dependency). Because these editors rely on inline event-handler attributes, they
 get their own relaxed `script-src` in `public/_headers` scoped to `/community-editors/*` only — the rest of the
 site keeps the strict policy described below.
 
